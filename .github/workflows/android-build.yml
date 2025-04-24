@@ -36,7 +36,7 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Decode keystore (if releasing)
-      if: secrets.KEYSTORE_BASE64
+   #   if: secrets.KEYSTORE_BASE64
       run: |
         echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/keystore.jks
 
@@ -47,7 +47,7 @@ jobs:
       run: ./gradlew assembleDebug
 
     - name: Build Release APK
-      if: secrets.KEYSTORE_BASE64
+     # if: secrets.KEYSTORE_BASE64
       run: |
         cat <<EOF >> app/gradle.properties
         android.injected.signing.store.file=app/keystore.jks
